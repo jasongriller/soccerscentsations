@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public class DefenderAI : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    public Transform player;
+    public float tacklingRange = 2f;
+    public float shootingRange = 10f;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    private void Update()
+    {
+        // Movement logic: Move parallel to the player
+        Vector3 moveDirection = (player.position - transform.position).normalized;
+        moveDirection.y = 0;  // Ignore vertical movement
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+        // Tackle logic
+        if (Vector3.Distance(player.position, transform.position) < tacklingRange)
+        {
+            // Handle tackling logic
+            TacklePlayer();
+        }
+
+        // Shooting logic
+        if (Vector3.Distance(player.position, transform.position) < shootingRange)
+        {
+            ShootAtPlayer();
+        }
+    }
+
+    private void TacklePlayer()
+    {
+        // Destroy or damage the player
+        // TODO: Implement your game's logic here
+        Debug.Log("Player tackled!");
+    }
+
+    private void ShootAtPlayer()
+    {
+        // Instantiate a bullet and shoot towards the player
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().AddForce((player.position - transform.position).normalized * 10f, ForceMode.Impulse);
+    }
+}
