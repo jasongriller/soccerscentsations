@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class DefenderSpawner : MonoBehaviour
 {
-    public GameObject defenderPrefab;
     public float spawnInterval = 2f;
-
+    public GameObject defenderPrefab;
     public Transform playerTransform;
     private void Start()
     {
@@ -18,11 +17,10 @@ public class DefenderSpawner : MonoBehaviour
         float distanceBetweenDefenders = 2f;
 
         Vector3 spawnPosition = playerTransform.position + new Vector3(0, 0, distanceAheadOfPlayer);
-
         for (int i = 0; i < 3; i++)
         {
             float offsetX = Random.Range(-5f, 5f) + (i * distanceBetweenDefenders);
-            Instantiate(defenderPrefab, spawnPosition + new Vector3(offsetX, 1, 0), Quaternion.identity);
+            Instantiate(defenderPrefab, spawnPosition + new Vector3(offsetX, 1, 0), Quaternion.Euler(0,180,0));
         }
     }
 

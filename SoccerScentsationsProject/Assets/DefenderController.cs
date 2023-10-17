@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class DefenderController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
 
     private void Update()
     {
-        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime * -1);
     }
 
     private void OnTriggerEnter(Collider other)
