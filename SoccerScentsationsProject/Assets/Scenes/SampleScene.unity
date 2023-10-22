@@ -123,20 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &344382830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148153714292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce8abf702f85c94881c3aad315da840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 7
-  sidewaysSpeed: 9
 --- !u!95 &344382831
 Animator:
   serializedVersion: 5
@@ -146,7 +132,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148153714292}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 4970eba2a487340418bd6e09d826419e, type: 3}
   m_Controller: {fileID: 9100000, guid: 935ecb06f98b877479a300b04a38daf5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1497,7 +1483,6 @@ GameObject:
   - component: {fileID: 543450652427705550}
   - component: {fileID: 344382833}
   - component: {fileID: 344382831}
-  - component: {fileID: 344382830}
   - component: {fileID: 919132148153714293}
   m_Layer: 0
   m_Name: MainPlayer
@@ -1515,10 +1500,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148153714292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ef55aad1b680004aa494cabc70baac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 43314605518d1ea40b552492fba23dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!1 &919132149400308760
 GameObject:
   m_ObjectHideFlags: 0
