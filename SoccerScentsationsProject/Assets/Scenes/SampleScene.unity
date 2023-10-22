@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 963194228}
-  runSpeed: 0.6
+  runSpeed: 0.4
   rotationSpeed: 2.5
 --- !u!136 &919132148153714294
 CapsuleCollider:
