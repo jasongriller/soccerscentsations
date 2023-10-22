@@ -5,57 +5,52 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    public float moveSpeed = 3;
-    public float sidewaysSpeed = 3;
+    Rigidbody rb;
+    Animator animator;
+    CapsuleCollider capsuleCollider;
 
-    private Animator animator;
+    public Transform cameraTransform;
 
-    // Start is called before the first frame update
+    private float yaw = 0;
+    private float pitch = 0;
+
+
+    private float speed;
+    public float runSpeed = 0.6f;
+    public float rotationSpeed = 2.5f;
+
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody>();
+        animator = gameObject.GetComponent<Animator>();
+        capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
-    // collider by Mark
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Defender"))
-        {
-            // For now, we'll just deactivate the player. This is a simple representation of "death".
-            gameObject.SetActive(false);
-
-            // You can also add other game-over mechanics here, like displaying a game-over screen.
-        }
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        // constant movement in straight line
-        transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
-        
-        // left and right movement
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * sidewaysSpeed, Space.World);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * sidewaysSpeed, Space.World);
-        }
+        float y = Input.GetAxis("Horizontal") * rotationSpeed;
+        float z = Input.GetAxis("Vertical") * speed;
+        transform.Translate(0, 0, z);
+        cameraTransform.Rotate(0, y, 0);
 
-        // code for flipping
-        if (Input.GetKeyDown(KeyCode.W))
+        yaw += rotationSpeed * Input.GetAxis("Mouse X");
+        pitch -= rotationSpeed * Input.GetAxis("Mouse Y");
+        transform.eulerAngles = new Vector3(0, yaw, 0);
+        cameraTransform.eulerAngles = new Vector3(pitch, yaw, 0);
+
+        if (Input.GetKey(KeyCode.UpArrow))
         {
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isIdle", false);
             animator.SetBool("flip", true);
         }
-        else if (Input.GetKeyUp(KeyCode.W)) // When you want to transition back to running
+        else 
         {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isIdle", true);
             animator.SetBool("flip", false);
         }
-
-        // checking if we have a gun 
-        
-
-    }
+            speed = runSpeed;
+        }
 }
